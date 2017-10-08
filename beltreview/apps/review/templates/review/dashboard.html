@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+		<title>Favorite Books</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		{% load staticfiles %}
+	    <link rel="stylesheet" href="{% static 'quotes/style.css' %}">
+	</head>
+<body>
+  <h1>Welcome {{the_user.alias}}</h1>   <a href="/new_book">add Book and Review</a>  |  <a href="/logout">Logout</a>
+
+  <h2>Recent Book Reviews:</h2>
+	<div>
+		{% for review in recent_reviews %}
+		  <div>
+			<h2><a href="show_book/{{review.the_book.title}}"</a></h2>
+			<p>Rating: {{review.rating}}<br></p>
+			<p><a href="show_author_profile/{{review.reviewer.id}}"> {{review.reviewer.alias}}</a> says:</p>
+			<p>{{ review.review }}</p><br> 
+			<p>Posted on : {{review.created_at}}">
+			</div><br>
+			{% endfor %}
+	  </form>
+	</table>
+	</div>
+	<br>
+	<div>
+	<h2>Other Books with reviews:</h2>		
+			{% for rev in other_reviews %}
+			<p><a href="show_book/{{review.the_book.title}}"</a></p>
+			<a href="remove_favorite/{{fav.id}}">remove from my List</a><br> <br>
+			</div>
+			{% endfor %}	 
+
+	<h2> Contribute a Quote</h2>
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+	{% endif %}
+</body>
+</html>

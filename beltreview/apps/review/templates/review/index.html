@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+		<title>Belt review Login</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		{% load staticfiles %}
+	    <link rel="stylesheet" href="{% static 'review/style.css' %}">
+	</head>
+<body>
+  <h1> Welcome!</h1>
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+	{% endif %}
+<hr>
+<!--<ul>
+{% for user in all_users %}
+<p> {{user.name}} {{user.alias}} {{user.email}}</p>
+{% endfor %}
+</ul>-->
+
+<div id="register">
+	<form action="/create_user" method="post">
+		{% csrf_token %}
+		<div class="form_group">
+			<p>Name: <input type='text' name='name'></p>
+			<p>Alias: <input type='text' name='alias'></p>
+			<p>Email:  <input type='text' name='email'></p>	
+			<p>Password:  <input type='text' name='password'></p>	
+			<p>Confirm PW:  <input type='text' name='confirm_pw'></p>	
+			<p>Date of Birth:  <input type='date' name='dob'></p>	
+			<input type="submit" value="Register">
+		</div>
+  </form>
+  <br><br>
+  <div id="login">
+	<form action="/login" method="post">
+		{% csrf_token %}
+		<div class="form_group">
+			<p>Email:  <input type='text' name='email'></p>	
+			<p>Password:  <input type='text' name='password'></p>	
+			<input type="submit" value="Login"><br><br>
+		</div>
+  </form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+		<title>eviewer Profile</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		{% load staticfiles %}
+	    <link rel="stylesheet" href="{% static 'review/style.css' %}">
+	</head>
+<body>
+  <a href="/dashboard">Home</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="/add_book">Add book and review</a> | &nbsp;&nbsp; <a href="/logout">Logout</a>
+  <h2>User Alias: {{the_user.alias}}</h2>
+  <h3>Name: {{the_user.name}}</h3>
+  <h3>Email: {{the_user.email}}</h3>
+  <h3>Total Reviews: {{review_count}}</h3>
+	<div>
+	  <h3>Posted reviews on the following books<h3>
+		{% for book in user_books %}
+			<p>{{book.title}}</p>
+			{% endfor %}
+	</div>
+</body>
+</html>

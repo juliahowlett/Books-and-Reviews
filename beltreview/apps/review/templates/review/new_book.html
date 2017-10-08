@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+		<title>Favorite Quotes</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		{% load staticfiles %}
+	    <link rel="stylesheet" href="{% static 'review/style.css' %}">
+	</head>
+<body>
+  <h1> Add a new Book Title and a Review</h1>
+    <a href="/index">Home</a>  |  <a href="/logout">Logout</a> 
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+	<form action="/add_book" method="post">
+		{% csrf_token %}
+		<div class="form_group">
+			<p>Book Title: <input type='text' name='title'></p>
+			<p>Author: <input type='text' name='Author'></p>
+			Review: <textarea name='desc' placeholder="pretty good book..."></textarea>	
+			<input type="submit" value="Add Book and Review"><br><br>
+			<a href="/index">Go Back</a><br><br>
+			Rating:  
+		</div>
+  </form>
+</body>
+</html>
